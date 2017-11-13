@@ -1,0 +1,39 @@
+import React, { Component } from 'react';
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
+
+class Header extends Component {
+
+  onLogin(){
+    this.props.onLogin();
+  }
+
+  onLogout(){
+    this.props.onLogout();
+  }
+
+
+  render(){
+    let page;
+    if(this.props.idToken){
+      page = <NavItem onClick={this.onLogout.bind(this)} href="#"> Logout</NavItem>
+    } else{
+      page = <NavItem onClick={this.onLogin.bind(this)} href="#"> Login</NavItem>
+    }
+
+
+    return(
+      <Navbar inverse className="head" >
+        <Navbar.Header>
+          <Navbar.Brand>
+            <a href="#">Github viewer</a>
+          </Navbar.Brand>
+        </Navbar.Header>
+        <Nav pullRight>
+          {page}
+        </Nav>
+      </Navbar>
+    );
+  }
+}
+
+export default Header;
